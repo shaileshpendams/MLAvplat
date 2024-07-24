@@ -1,11 +1,29 @@
 <div>
-    <input type="text" [(ngModel)]="userInput" placeholder="Enter location">
+    <input type="text" [(ngModel)]="userInput" placeholder="Enter location"  (input)="getRecommendations()">
     <button (click)="getRecommendations()">Get Recommendations</button>
   </div>
   
-  <div *ngIf="recommendations && recommendations.length">
+  <!-- <div *ngIf="recommendations && recommendations.length">
     <h2>Recommended Hotels:</h2>
     <ul>
       <li *ngFor="let recommendation of recommendations">{{ recommendation.name }}</li>
     </ul>
+  </div> -->
+
+
+  <!-- <div>
+    <input type="text" [(ngModel)]="userInput" placeholder="Enter location or hotel name" (input)="getRecommendations()" />
+  </div> -->
+  
+  <div *ngIf="recommendations && recommendations.length">
+    <h2>Recommended Hotels:</h2>
+    <ul>
+        <li *ngFor="let recommendation of recommendations">
+            {{ recommendation.name }} - {{ recommendation.location }} (Rating: {{ recommendation.rating }})
+        </li>
+    </ul>
+  </div>
+  
+  <div *ngIf="message">
+    <p>{{ message }}</p>
   </div>

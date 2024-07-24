@@ -28,7 +28,7 @@ export class DataService {
   getHotels() {
     return this.http.get(`${this.apiUrl}/hotelsList`);
   }
-  getHotelRecommendations(location: string) {
-    return this.http.post<any[]>(`${this.apiUrl}/recommend_hotels`, { location });
+  getHotelRecommendations(userInput:any) {
+    return this.http.post<any[]>(`${this.apiUrl}/recommend_hotels`, {  inputText: userInput  });
   }
 }

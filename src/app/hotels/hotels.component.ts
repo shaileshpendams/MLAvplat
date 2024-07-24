@@ -9,6 +9,7 @@ import { DataService } from '../services/data.service';
 export class HotelsComponent {
   public userInput:any;
   public recommendations: any[] | undefined;
+  message: string = '';
 constructor(private dataService:DataService){
 
 }
@@ -20,10 +21,19 @@ ngOnInit(){
   });
 }
   getRecommendations() {
-    this.dataService.getHotelRecommendations(this.userInput)
+    if(this.userInput){
+      this.dataService.getHotelRecommendations(this.userInput)
       .subscribe((data:any) => {
         console.log(data)
-        this.recommendations = data.recommendations;
-      });
+        this.recommendations = data;
+        console.log(this.recommendations)
+
+      },);
+  
+    }else{
+      this.recommendations = [];
+      this.message = 'Please enter a location or hotel name';
+    }
   }
+
 }
